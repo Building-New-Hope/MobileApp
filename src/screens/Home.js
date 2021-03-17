@@ -67,7 +67,7 @@ function Home(props) {
               style={styles.image4}
             ></Image>
           </ImageBackground>
-          <Text style={styles.loremIpsum}>More than Just Coffee</Text>
+          <Text style={styles.loremIpsum}>MORE THAN JUST COFFEE</Text>
           <Anchor style={styles.aboutUs} href="https://www.buildingnewhope.org/about">About Us</Anchor> 
           <TouchableOpacity
             onPress={() => navigation.navigate("Catalog")}
@@ -108,12 +108,14 @@ const styles = StyleSheet.create({
   image_imageStyle: {
     opacity: 0.82,
   },
+  //changed width to percentage from 200 to 39%
   image4: {
-    width: 200,
+    width: '39%',
     height: 200,
     marginTop: 357,
     marginLeft: 170,
   },
+  //added text align and changed fontsize to 20
   loremIpsum: {
     top: 575,
     left: 145,
@@ -122,8 +124,11 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,1)",
     height: 46,
     width: 274,
-    fontSize: 30,
+    fontSize: 20,
+    textAlign: "center",
   },
+
+  //added text align
   aboutUs: {
     top: 600,
     left: 145,
@@ -133,6 +138,7 @@ const styles = StyleSheet.create({
     height: 46,
     width: 274,
     fontSize: 30,
+    textAlign: "center",
   },
   button: {
     top: 697,
