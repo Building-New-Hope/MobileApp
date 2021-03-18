@@ -140,22 +140,32 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
   },
+  /*changed color to match the rest of the palette
+    changed width to percentage
+  */
   button: {
     top: 697,
-    width: 185,
+    width: '37%',
     height: 63,
     position: "absolute",
-    backgroundColor: "rgba(237,167,47,1)",
+    backgroundColor: "rgb(255,128,0)",
     left: 172,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 2,
   },
+  /*changed width to percentage
+    changed font size
+    adjusted margintop and marginleft
+  */
   orderNow1: {
     fontFamily: "calibri-light",
     color: "rgba(253,253,253,1)",
     height: 42,
-    width: 110,
-    fontSize: 24,
-    marginTop: 18,
-    marginLeft: 37,
+    width: '50%',
+    fontSize: 20,
+    marginTop: 5,
+    marginLeft: 54,
   },
   iconStack: {
     width: 583,
