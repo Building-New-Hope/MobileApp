@@ -68,7 +68,6 @@ function Home(props) {
             ></Image>
           </ImageBackground>
           <Text style={styles.loremIpsum}>MORE THAN JUST COFFEE</Text>
-          <Anchor style={styles.aboutUs} href="https://www.buildingnewhope.org/about">About Us</Anchor> 
           <TouchableOpacity
             onPress={() => navigation.navigate("Catalog")}
             style={styles.button}
@@ -105,17 +104,17 @@ const styles = StyleSheet.create({
     height: 1096,
     position: "absolute",
   },
+  //chaned opacity to 1
   image_imageStyle: {
-    opacity: 0.82,
+    opacity: 1,
   },
-  //changed width to percentage from 200 to 39%
+  //changed this back to pixels 
   image4: {
-    width: '39%',
+    width: 213,
     height: 200,
     marginTop: 357,
     marginLeft: 170,
   },
-  //added text align and changed fontsize to 20
   loremIpsum: {
     top: 575,
     left: 145,
@@ -127,45 +126,26 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
   },
-
-  //added text align
-  aboutUs: {
-    top: 600,
-    left: 145,
-    position: "absolute",
-    fontFamily: "calibri-regular",
-    color: "rgba(255,255,255,1)",
-    height: 46,
-    width: 274,
-    fontSize: 30,
-    textAlign: "center",
-  },
-  /*changed color to match the rest of the palette
-    changed width to percentage
-  */
+  //made button and ordernow percentages to accomodate for different phones 
   button: {
-    top: 697,
+    top: '68%',
     width: '37%',
-    height: 63,
+    height: '5.5%',
     position: "absolute",
     backgroundColor: "rgb(255,128,0)",
-    left: 172,
-    borderRadius: 8,
-    paddingVertical: 10,
-    paddingHorizontal: 2,
+    left: '30%',
+    borderRadius: 12,
+    paddingVertical: '4%',
+    paddingHorizontal: '1%',
   },
-  /*changed width to percentage
-    changed font size
-    adjusted margintop and marginleft
-  */
   orderNow1: {
     fontFamily: "calibri-light",
     color: "rgba(253,253,253,1)",
-    height: 42,
+    height: '70%',
     width: '50%',
     fontSize: 20,
-    marginTop: 5,
-    marginLeft: 54,
+    marginTop: '3%',
+    marginLeft: '26%',
   },
   iconStack: {
     width: 583,
