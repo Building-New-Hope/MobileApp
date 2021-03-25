@@ -36,7 +36,19 @@ const CartButton = ({ onPress }) => {
   );
 };
 
-export { SolidButton, CartButton };
+const CheckOutButton = (props) => {
+  // TODO
+  return (
+    <Button
+      icon={<Icon name="ei-credit-card" type="evilicon" size={30} />}
+      onPress={props.onPress}
+      color="green"
+      title="Check Out"
+    />
+  );
+};
+
+export { SolidButton, CartButton, CheckOutButton };
 
 const styles = StyleSheet.create({
   button: {

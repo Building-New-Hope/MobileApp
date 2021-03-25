@@ -32,7 +32,7 @@ const Catalog = (props) => {
   useEffect(() => {  // recalculate the total every time we mutate the products in cart
     setTotal(
       totalProducts.reduce((total, e) => {
-        //console.log(`total: ${total}, current price: ${e.price}`);
+        console.log(`total: ${total}, current price: ${e.price}`);
         return total + e.price * e.quantity;
       }, 0)
     );
@@ -40,9 +40,9 @@ const Catalog = (props) => {
    // console.log("current sum excluding the last one added", cartTotal);
   }, [totalProducts]);
 
-  const handleGoToCart = () => {
+  const handleGoToCart = () => {   
     //https://reactnavigation.org/docs/navigation-prop/
-
+    console.log(cartTotal)
     navigation.navigate("Cart", {
       products: totalProducts, //
       total: cartTotal,
@@ -80,26 +80,25 @@ const Catalog = (props) => {
     tempProducts[index].quantity--;
 
     if (tempProducts[index].quantity === 0) {
-      // when we put counter to 0, remove that product from the products list
       const id = tempProducts[index].id;
       tempProducts = tempProducts.filter((p) => p.id !== id);
-    } // the removed product will only be removed on the next cart open
+    } // the removed product will only be gone on the next cart open
 
     updateProducts(tempProducts);
-    navigation.setParams({
+    navigation.setParams({    // this is not functioning properly. 
       total: cartTotal,
       products: totalProducts,
     });
   };
+  
+  React.useLayoutEffect(() => { // 
+    navigation.setOptions(options);
+  }, [navigation, cartTotal]); // update it per cartTotal
 
-  const options = {  // the upper right corner cart button has some bugs with total updating
+  const options = {  
     headerTitle: "Catalog",
     headerRight: () => <CartButton onPress={handleGoToCart} />,
   };
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions(options);
-  }, [navigation, totalProducts]);
 
   return (
     <>
@@ -119,7 +118,7 @@ const Catalog = (props) => {
       
       {/* need to pretty up these buttons below, add margins / spacing */}
       <SolidButton
-        text="Go back"
+        text={"Go back"}
         onPress={() =>
           navigation.navigate("Home", {
             products: totalProducts,
