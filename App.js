@@ -4,11 +4,11 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
-import Home from "./frontend/screens/Home";
-import Catalog from "./frontend/screens/Catalog";
-import About from "./frontend/screens/About";
-import Cart from "./frontend/screens/Cart";
-import Splash from "./frontend/screens/Splash";
+import Home from "./src/screens/Home";
+import Catalog from "./src/screens/Catalog";
+//import About from "./src/screens/About";
+import Cart from "./src/screens/Cart";
+import Splash from "./src/screens/Splash";
 
 const Stack = createStackNavigator(); // https://reactnavigation.org/docs/hello-react-navigation
 
@@ -43,12 +43,11 @@ export default function App() {
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-              headerTintColor: "white",
-              headerStyle: { backgroundColor: "rgb(237,167,47)" },
+              headerTintColor: "black",
+              headerStyle: { backgroundColor: "white" },
             }}
           >
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="About Us" component={About} />
             <Stack.Screen name="Catalog" component={Catalog} />
             <Stack.Screen name="Cart" component={Cart} />
           </Stack.Navigator>
