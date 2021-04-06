@@ -32,10 +32,10 @@ const Product = (props) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
+/* TODO: Memory leak here when changing fast back to Home */
   return (
     <ListItem className="product" key={name}>
-      <View>
+      <View>    
         <QuickView
           addProduct={props.addProduct}
           setVisible={toggleModal}

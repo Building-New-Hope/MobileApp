@@ -6,7 +6,6 @@ import { CartButton } from "../components/Button";
 
 import Products from "../components/Products";
 import ShoppingCartStorage from "../utils/ShoppingCartStorage";
-import useProducts from "../utils/useProducts";
 /* 
 This module renders all the items available and lets the user navigate to the Cart.
 
@@ -20,15 +19,19 @@ https://reactnavigation.org/docs/troubleshooting#i-get-the-warning-non-serializa
 
 const Catalog = (props) => {
   const navigation = props.navigation;
-  const { products } = useProducts([]); // local storage products that have persisted, how can i get them as inital prod
-  const [totalProducts, updateProducts] = useState([]);
+  // const { products } = useProducts([]);
+  const [totalProducts, setProducts] = useState([]);
   const [cartTotal, setTotal] = useState(0);
 
- /* useEffect(() => { doesnt work
-    updateProducts(products);
-    console.log('total prod', totalProducts)
-  },[]) */
-  
+  useEffect(() => {
+    // get the latest cached products on every opening of Catalog. Kind of a weird data flow but it works
+    const fetchLocal = async () => {
+      const currentProducts = await ShoppingCartStorage.getProducts();
+      setProducts(currentProducts); // local storage products that have peistedrs
+    };
+    fetchLocal();
+  }, []);
+
   useEffect(() => {
     // recalculate the total every time we mutate the products in cart
     setTotal(
@@ -42,7 +45,6 @@ const Catalog = (props) => {
 
   const handleGoToCart = () => {
     //https://reactnavigation.org/docs/navigation-prop/
-    console.log(cartTotal);
     navigation.navigate("Cart", {
       products: totalProducts, //
       total: cartTotal,
@@ -54,49 +56,41 @@ const Catalog = (props) => {
   const handleAddProduct = async (selected) => {
     if (
       totalProducts.some(
-        (p) => p.id === selected.id && p.size === selected.size
+        (p) => p.id === selected.id && p.size === selected.size // redundancy here
       )
     ) {
       incrementProduct(selected);
     } else {
       // the size, type, or grind is new
-      updateProducts(totalProducts.concat(selected));
+      setProducts(totalProducts.concat(selected));
     }
     await ShoppingCartStorage.addProduct(selected);
   };
 
   const incrementProduct = (selected) => {
     let index = totalProducts.findIndex((i) => i.id === selected.id);
-    let tempProducts = [...totalProducts]; // copies the array
-    tempProducts[index].quantity++;
-    updateProducts(tempProducts);
-
-    navigation.setParams({
-      total: cartTotal,
-    });
+    let newProducts = [...totalProducts]; // copies the array
+    newProducts[index].quantity++;
+    setProducts(newProducts);
+    ShoppingCartStorage.incrementProduct(selected);
   };
 
   const decrementProduct = (selected) => {
     let index = totalProducts.findIndex((i) => i.id === selected.id);
-    let tempProducts = [...totalProducts];
-    tempProducts[index].quantity--;
+    let newProducts = [...totalProducts];
+    newProducts[index].quantity--;
 
-    if (tempProducts[index].quantity === 0) {
-      const id = tempProducts[index].id;
-      tempProducts = tempProducts.filter((p) => p.id !== id);
+    if (newProducts[index].quantity === 0) {
+      const id = newProducts[index].id;
+      newProducts = newProducts.filter((p) => p.id !== id);
     } // the removed product will only be gone on the next cart open
-
-    updateProducts(tempProducts);
-    navigation.setParams({
-      // this is not functioning properly.
-      total: cartTotal,
-      products: totalProducts,
-    });
+    setProducts(newProducts);
+    ShoppingCartStorage.decrementProduct(selected);
   };
 
   const resetProducts = async () => {
     await ShoppingCartStorage.clearProducts();
-    updateProducts([]);
+    setProducts([]);
   };
 
   React.useLayoutEffect(() => {

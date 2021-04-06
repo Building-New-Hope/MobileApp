@@ -8,7 +8,6 @@ import Divider from "react-native-btr/src/Components/Separator";
 import { SolidButton } from "../components/Button";
 
 import findGrindDesc from "../utils/findGrindDesc";
-import ShoppingCartStorage from "../utils/ShoppingCartStorage";
 import { getToken } from "../services/payments";
 
 import theme from "../constants/theme";
@@ -41,7 +40,7 @@ const Cart = ({ navigation, route }) => {
       let { products } = route.params;
       setItems(products);
     };
-    console.log(route.params);
+    console.log("Route parameters: ", route.params);
     if (route.params)
       // passed params w/ react navigation. Currently the only was to navigate to cart is through Catalog so params will always be passed
       // In the future there should be support for w/o params using localstorage or other context options
