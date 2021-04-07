@@ -74,100 +74,99 @@ function QuickView(props) {
   return (
     //https://www.npmjs.com/package/react-native-dropdown-picker#available-item-properties
     <View>
-      <View>
-        <Modal
-          style={styles.parentContainer}
-          isVisible={props.isVisible}
-          backdropColor="#e8dbc3"
-          backdropOpacity={0.95}
-          animationIn="zoomInUp"
-          animationOut="fadeOutDownBig"
-          onBackdropPress={props.setVisible}
-          onSwipeComplete={props.setVisible}
-          swipeDirection="right"
-        >
-          <View style={styles.backButton}>
-            <SolidButton onPress={props.setVisible} text="< BACK" />
+      <Modal
+        style={styles.parentContainer}
+        isVisible={props.isVisible}
+        backdropColor="#e8dbc3"
+        backdropOpacity={0.95}
+        backdropTransitionInTiming={300}
+        backdropTransitionOutTiming={300}
+        animationIn="zoomInUp"
+        animationOut="fadeOutDownBig"
+        onBackdropPress={props.setVisible}
+        onSwipeComplete={props.setVisible}
+        swipeDirection="right"
+      >
+        <View style={styles.backButton}>
+          <SolidButton onPress={props.setVisible} text="< BACK" />
+        </View>
+
+        <View style={styles.imageAndDetails}>
+          <Text style={styles.productName}>{name}</Text>
+          <ProductImage url={imageUrl} />
+          <View style={styles.details}>
+            <Text style={styles.productDetails}>{size} oz</Text>
+            <Text style={styles.productDetails2}>${price}</Text>
+          </View>
+        </View>
+
+        <View style={styles.dropDownContainer}>
+          <View style={styles.dropDown}>
+            <DropDownPicker
+              items={grinds}
+              defaultValue={grind}
+              containerStyle={{ height: 40 }}
+              style={{ backgroundColor: "#fafafa" }}
+              itemStyle={{
+                justifyContent: "flex-start",
+              }}
+              labelStyle={{
+                fontSize: 14,
+                textAlign: "left",
+                color: "#39739d",
+              }}
+              selectedLabelStyle={{
+                fontWeight: "bold",
+                color: "#39739d",
+              }}
+              onChangeItem={(item) => setGrind(item.value)} //
+              isVisible={isDDVisible.grindVisible}
+              onOpen={() => changeVisibility({ grindVisible: true })}
+              onClose={() => changeVisibility({ grindVisible: true })}
+            />
           </View>
 
-          <View style={styles.imageAndDetails}>
-            <Text style={styles.productName}>{name}</Text>
-            <ProductImage url={imageUrl} />
-            <View style={styles.details}>
-              <Text style={styles.productDetails}>{size} oz</Text>
-              <Text style={styles.productDetails2}>${price}</Text>
-            </View>
+          <Divider style={styles.divider} />
+
+          <View style={styles.dropDown}>
+            <DropDownPicker
+              style={{ paddingVertical: 10 }}
+              containerStyle={{ width: 150, height: 70 }}
+              labelStyle={{
+                fontSize: 14,
+                textAlign: "left",
+                color: "#39739d",
+              }}
+              selectedLabelStyle={{
+                fontWeight: "bold",
+                color: "#39739d",
+              }}
+              items={sizes}
+              defaultValue={size}
+              containerStyle={{ height: 40 }}
+              style={{ backgroundColor: "#fafafa" }}
+              itemStyle={{
+                justifyContent: "flex-start",
+              }}
+              onChangeItem={(item) => {
+                setSize(item.value);
+              }}
+              isVisible={isDDVisible.sizeVisible}
+              onOpen={() => changeVisibility({ sizeVisible: true })}
+              onClose={() => changeVisibility({ sizeVisible: false })}
+            />
           </View>
+        </View>
 
-          <View style={styles.dropDownContainer}>
-            <View style={styles.dropDown}>
-              <DropDownPicker
-                items={grinds}
-                defaultValue={grind}
-                containerStyle={{ height: 40 }}
-                style={{ backgroundColor: "#fafafa" }}
-                itemStyle={{
-                  justifyContent: "flex-start",
-                }}
-                labelStyle={{
-                  fontSize: 14,
-                  textAlign: "left",
-                  color: "#39739d",
-                }}
-                selectedLabelStyle={{
-                  fontWeight: "bold",
-                  color: "#39739d",
-                }}
-                onChangeItem={(item) => setGrind(item.value)} //
-                isVisible={isDDVisible.grindVisible}
-                onOpen={() => changeVisibility({ grindVisible: true })}
-                onClose={() => changeVisibility({ grindVisible: true })}
-              />
-            </View>
-
-            <Divider style={styles.divider} />
-
-            <View style={styles.dropDown}>
-              <DropDownPicker
-                style={{ paddingVertical: 10 }}
-                containerStyle={{ width: 150, height: 70 }}
-                labelStyle={{
-                  fontSize: 14,
-                  textAlign: "left",
-                  color: "#39739d",
-                }}
-                selectedLabelStyle={{
-                  fontWeight: "bold",
-                  color: "#39739d",
-                }}
-                items={sizes}
-                defaultValue={size}
-                containerStyle={{ height: 40 }}
-                style={{ backgroundColor: "#fafafa" }}
-                itemStyle={{
-                  justifyContent: "flex-start",
-                }}
-                onChangeItem={(item) => {
-                  console.log("changing,,, hmmmmmmm");
-                  setSize(item.value);
-                }}
-                isVisible={isDDVisible.sizeVisible}
-                onOpen={() => changeVisibility({ sizeVisible: true })}
-                onClose={() => changeVisibility({ sizeVisible: false })}
-              />
-            </View>
+        <View style={styles.cartButtonParent}>
+          <View style={styles.cartButton}>
+            <SolidButton
+              text={isAdded ? "ADDED" : "ADD TO CART"}
+              onPress={addToCart}
+            />
           </View>
-
-          <View style={styles.cartButtonParent}>
-            <View style={styles.cartButton}>
-              <SolidButton
-                text={isAdded ? "ADDED" : "ADD TO CART"}
-                onPress={addToCart}
-              />
-            </View>
-          </View>
-        </Modal>
-      </View>
+        </View>
+      </Modal>
     </View>
   );
 }
