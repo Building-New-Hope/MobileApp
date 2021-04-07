@@ -33,7 +33,7 @@ const EmptyCart = ({ navigation }) => {
 
 const Cart = ({ navigation, route }) => {
   const [items, setItems] = useState([]);
-  const [total, updateTotal] = useState(route.params.total);
+  const [total, updateTotal] = useState(route.params ? route.params.total : 0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,15 +50,11 @@ const Cart = ({ navigation, route }) => {
   let cartItems = items
     .filter((i) => i.quantity != 0)
     .map((i) => {
-      // filter so that it disappears -
-      // bugs with the Counter - resets the remaining products counter to 0 only if it was added after the one removedmap((i) => {
       return (
         <View key={i.id} style={styles.productContainerParent}>
           <View style={styles.productContainer}>
             <View style={styles.productDetails}>
-              <Text style={styles.productDetailsText} >
-                {i.name}
-              </Text>
+              <Text style={styles.productDetailsText}>{i.name}</Text>
               <Text style={styles.productDetailsText2}>
                 {findGrindDesc(i.grind)}
               </Text>
@@ -69,7 +65,9 @@ const Cart = ({ navigation, route }) => {
 
             <View style={styles.productQuantity}>
               <Counter // each item will have its seperate Counter for adding more / subtracting
-                item={i}
+                id={i.id}
+                price={i.price}
+                quantity={i.quantity}
                 increment={route.params.increment}
                 decrement={route.params.decrement}
                 updateTotal={updateTotal}
@@ -82,7 +80,7 @@ const Cart = ({ navigation, route }) => {
       );
     });
 
-  if (!items || items.length == 0) {
+  if (!items || cartItems.length == 0) {
     return <EmptyCart navigation={navigation} />;
   } else {
     return (

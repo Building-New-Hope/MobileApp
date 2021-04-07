@@ -14,6 +14,7 @@ function Home(props) {
   const navigation = props.navigation;
   const options = {
     headerTitle: "Building New Hope",
+   // headerRight: () => <CartButton onPress={navigation.navigate("Cart")} />,
   };
 
   React.useLayoutEffect(() => {

@@ -10,19 +10,26 @@ import ShoppingCartStorage from "../utils/ShoppingCartStorage";
 This module renders all the items available and lets the user navigate to the Cart.
 
 We will hold a lot of the app's state here. Holds the items to be passed to the cart as well as the 
-calculated total. We could put this into the Home page just so all the stuff is accesible in there, but there might be trade offs in terms of performance.
-Every single add to Cart causes a rerender in the Catalog.
+calculated total. We could put this into a custom hook w/ the increment / decrement functions. 
 
- TODO: TODO 
+TODO: might be fixed? inconsistent.
 https://reactnavigation.org/docs/troubleshooting#i-get-the-warning-non-serializable-values-were-found-in-the-navigation-state
 */
 
-const Catalog = (props) => {
-  const navigation = props.navigation;
+const Catalog = ({ navigation }) => {
   // const { products } = useProducts([]);
   const [totalProducts, setProducts] = useState([]);
   const [cartTotal, setTotal] = useState(0);
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions(options);
+  }, [navigation, cartTotal]); // update it per cartTotal
+
+  const options = {
+    headerTitle: "Catalog",
+    headerRight: () => <CartButton onPress={handleGoToCart} />,
+  };
+  
   useEffect(() => {
     // get the latest cached products on every opening of Catalog. Kind of a weird data flow but it works
     const fetchLocal = async () => {
@@ -33,20 +40,20 @@ const Catalog = (props) => {
   }, []);
 
   useEffect(() => {
-    // recalculate the total every time we mutate the products in cart
+    // recalculates the total every time we mutate the products in cart
     setTotal(
       totalProducts.reduce((total, e) => {
         return total + e.price * e.quantity;
       }, 0)
     );
-
     // console.log("current sum excluding the last one added", cartTotal);
   }, [totalProducts]);
 
+  // refact to not pass full data - think i need all of it though. could alternatively make the products its own state w/ attached functions
   const handleGoToCart = () => {
     //https://reactnavigation.org/docs/navigation-prop/
     navigation.navigate("Cart", {
-      products: totalProducts, //
+      products: totalProducts,
       total: cartTotal,
       increment: incrementProduct, // to change the totalProducts state when on a different screen
       decrement: decrementProduct,
@@ -59,7 +66,7 @@ const Catalog = (props) => {
         (p) => p.id === selected.id && p.size === selected.size // redundancy here
       )
     ) {
-      incrementProduct(selected);
+      incrementProduct(selected.id);
     } else {
       // the size, type, or grind is new
       setProducts(totalProducts.concat(selected));
@@ -67,16 +74,16 @@ const Catalog = (props) => {
     await ShoppingCartStorage.addProduct(selected);
   };
 
-  const incrementProduct = (selected) => {
-    let index = totalProducts.findIndex((i) => i.id === selected.id);
+  const incrementProduct = (id) => {
+    let index = totalProducts.findIndex((i) => i.id === id);
     let newProducts = [...totalProducts]; // copies the array
     newProducts[index].quantity++;
     setProducts(newProducts);
-    ShoppingCartStorage.incrementProduct(selected);
+    ShoppingCartStorage.incrementProduct(id);
   };
 
-  const decrementProduct = (selected) => {
-    let index = totalProducts.findIndex((i) => i.id === selected.id);
+  const decrementProduct = (id) => {
+    let index = totalProducts.findIndex((i) => i.id === id);
     let newProducts = [...totalProducts];
     newProducts[index].quantity--;
 
@@ -85,21 +92,12 @@ const Catalog = (props) => {
       newProducts = newProducts.filter((p) => p.id !== id);
     } // the removed product will only be gone on the next cart open
     setProducts(newProducts);
-    ShoppingCartStorage.decrementProduct(selected);
+    ShoppingCartStorage.decrementProduct(id);
   };
 
   const resetProducts = async () => {
     await ShoppingCartStorage.clearProducts();
     setProducts([]);
-  };
-
-  React.useLayoutEffect(() => {
-    navigation.setOptions(options);
-  }, [navigation, cartTotal]); // update it per cartTotal
-
-  const options = {
-    headerTitle: "Catalog",
-    headerRight: () => <CartButton onPress={handleGoToCart} />,
   };
 
   return (
@@ -111,7 +109,6 @@ const Catalog = (props) => {
 
           <View style={styles.productsContainer}>
             <Products
-              key={1} // actually still whining here "need unique key"
               navigation={navigation}
               addProduct={handleAddProduct}
               products={totalProducts}
