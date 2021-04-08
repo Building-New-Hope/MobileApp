@@ -1,7 +1,7 @@
 // enum constants
 
 export default {
-    WHOLE: "Whole Bean",
+    WHOLE: "Whole bean",
     DRIP: "Drip",
     FRENCHPRESS: "Coarse for French Press",
     COLDBREW: "Coarse for Cold Brew",

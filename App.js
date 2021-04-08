@@ -1,48 +1,31 @@
 import "react-native-gesture-handler";
-import React, { useState, useEffect, useCallback } from "react";
+import * as React from "react";
+import Native from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./frontend/navigation/TabNavigator";
+import Home from './src/screens/Home'
 
-import Splash from "./frontend/screens/Splash";
-import {
-  Poppins_400Regular,
-  Philosopher_400Regular,
-} from "./assets/fonts/google-fonts/dev";
-import { loadAsync } from "expo-font";
+import Catalog from "./src/screens/Catalog";
+import ProductsPage from './src/screens/ProductsPage'
 
-// https://reactnavigation.org/docs/tab-based-navigation
+import Cart from "./src/screens/Cart";
+
+
+const Stack = createStackNavigator(); // https://reactnavigation.org/docs/hello-react-navigation
+
+
+// https://reactnavigation.org/docs/navigating/ READ
 export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
-
-  useEffect(() => {
-    const prepare = async () => {
-      try {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // load in for 2 seconds
-        await loadAsync({ Poppins_400Regular, Philosopher_400Regular }).then(() =>
-          console.log("fonts loaded")
-        );
-        //TODO: could fetch products from Wix API
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
-      }
-    };
-    prepare();
-  }, []); // do it only once
-
-  if (!appIsReady) {
-    return <Splash />;
-  }
-  //TODO: https://reactnavigation.org/docs/stack-navigator  - Transitions
   return (
-    <>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <TabNavigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Catalog" component={Catalog} />
+          <Stack.Screen name="Cart" component={Cart} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

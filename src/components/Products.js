@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from "react";
 import { StyleSheet, View } from 'react-native'
+
 import Product from "./Product";
 
-import list from '../constants/ProductList.js' // TODO: Wix API collection GET request for dynamic products.
+import list from '../utils/ProductList.json'
 
 const Products = (props) => {
   let productsData;
@@ -10,18 +11,21 @@ const Products = (props) => {
   // put state in cart component
 
   productsData = list.map((product, i) => {
-    //console.log(product)
+    
     return (
+      <>
       <Product
-        key={product.name}  // Varying product features
+        key={i}
         name={product.name}
-        image={product.image}
-        price={product.price}   
-
+        description={product.description}
+        price={product.price}
+        size={product.size}
+        grind={product.grind}
         navigation={props.navigation}
         addProduct={props.addProduct}
-        products={props.products}  // products is the items so far added to cart, passed down from Catalog
+        products={props.products}  // products is the items so far added to cart
       />
+      </>
     );
   });
 
@@ -35,14 +39,10 @@ const Products = (props) => {
 
 export default Products;
 
-
 const styles = StyleSheet.create({
-	
   container: {
-		flexWrap: "wrap",
-		flexDirection: "row",
-		alignItems: 'center',
-		justifyContent: 'center'
+      
+      alignItems: 'center',
+      justifyContent: 'center'
   }
-  
-});
+}); 
