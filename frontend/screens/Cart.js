@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { Text, Card } from "react-native-elements";
-import { View, StyleSheet, ScrollView } from "react-native";
-import { CheckOutButton } from "../components/Button";
-import Counter from "../components/Counter";
-import Divider from "react-native-btr/src/Components/Separator";
-import { SolidButton } from "../components/Button";
+import { Text, Card } from 'react-native-elements';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { CheckOutButton } from '../components/Button';
+import Counter from '../components/Counter';
+import Divider from 'react-native-btr/src/Components/Separator';
+import { SolidButton } from '../components/Button';
 
-import findGrindDesc from "../utils/findGrindDesc";
-import { getToken } from "../services/payments";
+import findGrindDesc from '../utils/findGrindDesc';
+import { getToken } from '../services/payments';
 
-import theme from "../constants/theme";
+import theme from '../constants/theme';
 
 /* 
 This is a seperate screen for the cart to be displayed. If not React Navigation parameters were passed we will
@@ -25,7 +25,7 @@ const EmptyCart = ({ navigation }) => {
       <SolidButton
         text="Continue Shopping"
         buttonStyle={styles.button}
-        onPress={() => navigation.navigate("Catalog")}
+        onPress={() => navigation.navigate('Catalog')}
       />
     </View>
   );
@@ -40,7 +40,7 @@ const Cart = ({ navigation, route }) => {
       let { products } = route.params;
       setItems(products);
     };
-    console.log("Route parameters: ", route.params);
+    console.log('Route parameters: ', route.params);
     if (route.params)
       // passed params w/ react navigation. Currently the only was to navigate to cart is through Catalog so params will always be passed
       // In the future there should be support for w/o params using localstorage or other context options
@@ -91,7 +91,7 @@ const Cart = ({ navigation, route }) => {
               <Card.Title>MY CART</Card.Title>
               {cartItems}
               <Divider />
-              <Text style={{ fontWeight: "bold", marginTop: "5%" }}>
+              <Text style={{ fontWeight: 'bold', marginTop: '5%' }}>
                 TOTAL ${total}
               </Text>
             </View>
@@ -111,8 +111,8 @@ export default Cart;
 const styles = StyleSheet.create({
   nothingHere: {
     flex: 0.4,
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   title: {
     fontFamily: theme.fonts.secondary,
@@ -127,35 +127,35 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.button,
   },
   card: {
-    margin: "4.7%",
+    margin: '4.7%',
   },
   cardColor: {
-    backgroundColor: "#e8dbc3",
-    margin: "-4.7%",
+    backgroundColor: '#e8dbc3',
+    margin: '-4.7%',
   },
   productContainerParent: {
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   productContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: "4%",
-    marginTop: "3%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: '4%',
+    marginTop: '3%',
   },
   productDetails: {
     height: 75,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   productQuantity: {
     height: 75,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   productDetailsText: {
     fontSize: 19.5,
     fontFamily: theme.fonts.secondary,
   },
   productDetailsText2: {
-    marginBottom: "3%",
+    marginBottom: '3%',
   },
 });

@@ -10,4 +10,3 @@ export const Poppins_400Regular =
   'http://fonts.gstatic.com/s/poppins/v9/pxiEyp8kv8JHgFVrFJDUc1NECPY.ttf';
 export const Philosopher_400Regular =
   'http://fonts.gstatic.com/s/philosopher/v12/vEFV2_5QCwIS4_Dhez5jcVBpRUwU08qe.ttf';
-  

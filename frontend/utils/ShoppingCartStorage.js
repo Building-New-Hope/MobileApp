@@ -1,11 +1,11 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /*
 Abstraction for the the asynclocalStorage API
 */
 
 class ShoppingCartStorage {
-  constructor(namespace = "shoppingCart") {
+  constructor(namespace = 'shoppingCart') {
     this.namespace = namespace; // prefix we throw in front of the keys
   }
 

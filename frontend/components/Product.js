@@ -9,19 +9,19 @@ import {
   ImageBackground,
   TouchableOpacity,
   Linking,
-} from "react-native";
+} from 'react-native';
 
-import React, { useState, useEffect } from "react";
-import { SolidButton } from "./Button";
-import { ListItem, Text, Tooltip } from "react-native-elements";
-import QuickView from "./QuickView";
+import React, { useState, useEffect } from 'react';
+import { SolidButton } from './Button';
+import { ListItem, Text, Tooltip } from 'react-native-elements';
+import QuickView from './QuickView';
 
 //import ProductModel from "../utils/ProductModel";
 
 const Product = (props) => {
   let image;
   if (props.image) image = props.image;
-  else image = require("../../assets/images/coffee.jpg"); // have to use the require here bc it only works w/ static values
+  else image = require('../../assets/images/coffee.jpg'); // have to use the require here bc it only works w/ static values
 
   //const image = props.image ?? ("../../assets/images/coffee.jpg"); // why isnt default case working
   const name = props.name;
@@ -32,10 +32,10 @@ const Product = (props) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-/* TODO: Memory leak here when changing fast back to Home */
+  /* TODO: Memory leak here when changing fast back to Home */
   return (
     <ListItem className="product" key={name}>
-      <View>    
+      <View>
         <QuickView
           addProduct={props.addProduct}
           setVisible={toggleModal}
@@ -48,10 +48,10 @@ const Product = (props) => {
         <TouchableOpacity
           style={styles.productTile}
           onPress={
-            name == "Subscribe"
+            name == 'Subscribe'
               ? () =>
                   Linking.openURL(
-                    "https://www.buildingnewhope.org/product-page/subscribe"
+                    'https://www.buildingnewhope.org/product-page/subscribe'
                   )
               : toggleModal
           }
@@ -68,7 +68,7 @@ const Product = (props) => {
           </ImageBackground>
         </TouchableOpacity>
 
-        {name == "Subscribe" ? (
+        {name == 'Subscribe' ? (
           <Text style={styles.priceStyle}>(Opens Browser)</Text>
         ) : (
           <Text style={styles.priceStyle}>From ${initialPrice}</Text>
@@ -76,14 +76,14 @@ const Product = (props) => {
 
         <Button
           onPress={
-            name == "Subscribe"
+            name == 'Subscribe'
               ? () =>
                   Linking.openURL(
-                    "https://www.buildingnewhope.org/product-page/subscribe"
+                    'https://www.buildingnewhope.org/product-page/subscribe'
                   )
               : toggleModal
           }
-          title={name == "Subscribe" ? "Go" : "See more"}
+          title={name == 'Subscribe' ? 'Go' : 'See more'}
           color="rgba(237,167,47,1)"
         />
       </View>
@@ -95,21 +95,21 @@ const Product = (props) => {
 
 const styles = StyleSheet.create({
   priceStyle: {
-    color: "dimgrey",
-    fontWeight: "normal",
+    color: 'dimgrey',
+    fontWeight: 'normal',
     fontSize: 14.9,
   },
 
   productTile: {
     width: 130,
     height: 130,
-    backgroundColor: "rgba(230, 230, 230,1)",
+    backgroundColor: 'rgba(230, 230, 230,1)',
     elevation: 18,
     borderRadius: 5,
-    overflow: "hidden",
-    alignSelf: "flex-end",
-    marginLeft: "-1.5%",
-    marginBottom: "1%",
+    overflow: 'hidden',
+    alignSelf: 'flex-end',
+    marginLeft: '-1.5%',
+    marginBottom: '1%',
   },
 
   image1: {
@@ -124,16 +124,16 @@ const styles = StyleSheet.create({
 
   rect: {
     height: 27,
-    backgroundColor: "rgba(21,19,19,0.5)",
+    backgroundColor: 'rgba(21,19,19,0.5)',
     marginBottom: 1,
   },
 
   productName: {
-    color: "rgba(247,252,253,1)",
+    color: 'rgba(247,252,253,1)',
     fontSize: 15,
     marginTop: 7,
-    alignSelf: "center",
-    textTransform: "uppercase",
+    alignSelf: 'center',
+    textTransform: 'uppercase',
   },
 });
 //************************** STYLES END **************************

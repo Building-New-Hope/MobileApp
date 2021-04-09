@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Button } from "react-native";
-import { Card } from "react-native-elements";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, ScrollView, Button, Image } from 'react-native';
+import { Card } from 'react-native-elements';
 
-import { CartButton } from "../components/Button";
+import { CartButton } from '../components/Button';
 
-import Products from "../components/Products";
-import ShoppingCartStorage from "../utils/ShoppingCartStorage";
+import Products from '../components/Products';
+import ShoppingCartStorage from '../utils/ShoppingCartStorage';
 /* 
 This module renders all the items available and lets the user navigate to the Cart.
 
@@ -26,10 +26,10 @@ const Catalog = ({ navigation }) => {
   }, [navigation, cartTotal]); // update it per cartTotal
 
   const options = {
-    headerTitle: "Catalog",
+    headerTitle: 'Catalog',
     headerRight: () => <CartButton onPress={handleGoToCart} />,
   };
-  
+
   useEffect(() => {
     // get the latest cached products on every opening of Catalog. Kind of a weird data flow but it works
     const fetchLocal = async () => {
@@ -52,7 +52,7 @@ const Catalog = ({ navigation }) => {
   // refact to not pass full data - think i need all of it though. could alternatively make the products its own state w/ attached functions
   const handleGoToCart = () => {
     //https://reactnavigation.org/docs/navigation-prop/
-    navigation.navigate("Cart", {
+    navigation.navigate('Cart', {
       products: totalProducts,
       total: cartTotal,
       increment: incrementProduct, // to change the totalProducts state when on a different screen
@@ -104,7 +104,8 @@ const Catalog = ({ navigation }) => {
     <>
       <ScrollView>
         <Card>
-          <Card.Title>Buy Coffee</Card.Title>
+          <Card.Title>Our Coffee</Card.Title>
+          {/*   <Image src={require('../../assets/images/colorlogo.png')} /> */}
           <Card.Divider />
 
           <View style={styles.productsContainer}>
@@ -118,7 +119,7 @@ const Catalog = ({ navigation }) => {
           <View style={styles.resetCartButtonParent}>
             <View style={styles.resetCartButton}>
               <Button
-                title={"Reset cart"}
+                title={'Reset cart'}
                 onPress={resetProducts}
                 color="firebrick"
               />
@@ -134,20 +135,20 @@ const Catalog = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   productsContainer: {
-    flexDirection: "column",
-    marginLeft: "-4%",
-    marginRight: "-4%",
+    flexDirection: 'column',
+    marginLeft: '-4%',
+    marginRight: '-4%',
   },
   resetCartButtonParent: {
-    width: "100%",
+    width: '100%',
     //justifyContent: "center",
     //alignItems: "center",
-    marginTop: "10%",
+    marginTop: '10%',
   },
   resetCartButton: {
-    width: "35%",
-    margin: "3%",
-    marginBottom: "5%",
+    width: '35%',
+    margin: '3%',
+    marginBottom: '5%',
   },
 });
 //************************** STYLES END **************************

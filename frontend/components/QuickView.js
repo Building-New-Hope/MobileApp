@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Text, Divider } from "react-native-elements";
-import { View, StyleSheet } from "react-native";
-import Modal from "react-native-modal"; // could also use Overlay from R-N-E
-import DropDownPicker from "react-native-dropdown-picker";
+import React, { useEffect, useState } from 'react';
+import { Text, Divider } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
+import Modal from 'react-native-modal'; // could also use Overlay from R-N-E
+import DropDownPicker from 'react-native-dropdown-picker';
 
-import { SolidButton } from "./Button";
-import ProductImage from "./ProductImage";
+import { SolidButton } from './Button';
+import ProductImage from './ProductImage';
 
-import ProductModel from "../constants/ProductModel";
-import coffee from "../constants/coffee";
+import ProductModel from '../constants/ProductModel';
+import coffee from '../constants/coffee';
 const grinds = coffee.grinds; // for our drop down menus
 const sizes = coffee.sizes;
 
-import theme from "../constants/theme";
+import theme from '../constants/theme';
 
 /* 
 
@@ -28,7 +28,7 @@ function QuickView(props) {
 
   const [isAdded, setAdded] = useState(false);
   const [size, setSize] = useState(12);
-  const [grind, setGrind] = useState("WHOLE");
+  const [grind, setGrind] = useState('WHOLE');
   const [price, setPrice] = useState(12.75);
   const [imageUrl, setImageUrl] = useState(props.image);
 
@@ -47,14 +47,14 @@ function QuickView(props) {
 
   useEffect(() => {
     let temp = price;
-    if (size == 12 && props.name !== "Decaf") {
-      setImageUrl(require("../../assets/images/12ozbag.jpg"));
+    if (size == 12 && props.name !== 'Decaf') {
+      setImageUrl(require('../../assets/images/12ozbag.jpg'));
       temp = 12.75;
     } else if (size == 16) {
-      setImageUrl(require("../../assets/images/16ozbag.jpg"));
+      setImageUrl(require('../../assets/images/16ozbag.jpg'));
       temp = 15.75;
     } else if (size == 80) {
-      setImageUrl(require("../../assets/images/5lbbag.jpg"));
+      setImageUrl(require('../../assets/images/5lbbag.jpg'));
       temp = 70.0;
     }
     setPrice(temp);
@@ -106,18 +106,18 @@ function QuickView(props) {
               items={grinds}
               defaultValue={grind}
               containerStyle={{ height: 40 }}
-              style={{ backgroundColor: "#fafafa" }}
+              style={{ backgroundColor: '#fafafa' }}
               itemStyle={{
-                justifyContent: "flex-start",
+                justifyContent: 'flex-start',
               }}
               labelStyle={{
                 fontSize: 14,
-                textAlign: "left",
-                color: "#39739d",
+                textAlign: 'left',
+                color: '#39739d',
               }}
               selectedLabelStyle={{
-                fontWeight: "bold",
-                color: "#39739d",
+                fontWeight: 'bold',
+                color: '#39739d',
               }}
               onChangeItem={(item) => setGrind(item.value)} //
               isVisible={isDDVisible.grindVisible}
@@ -134,19 +134,19 @@ function QuickView(props) {
               containerStyle={{ width: 150, height: 70 }}
               labelStyle={{
                 fontSize: 14,
-                textAlign: "left",
-                color: "#39739d",
+                textAlign: 'left',
+                color: '#39739d',
               }}
               selectedLabelStyle={{
-                fontWeight: "bold",
-                color: "#39739d",
+                fontWeight: 'bold',
+                color: '#39739d',
               }}
               items={sizes}
               defaultValue={size}
               containerStyle={{ height: 40 }}
-              style={{ backgroundColor: "#fafafa" }}
+              style={{ backgroundColor: '#fafafa' }}
               itemStyle={{
-                justifyContent: "flex-start",
+                justifyContent: 'flex-start',
               }}
               onChangeItem={(item) => {
                 setSize(item.value);
@@ -161,7 +161,7 @@ function QuickView(props) {
         <View style={styles.cartButtonParent}>
           <View style={styles.cartButton}>
             <SolidButton
-              text={isAdded ? "ADDED" : "ADD TO CART"}
+              text={isAdded ? 'ADDED' : 'ADD TO CART'}
               onPress={addToCart}
             />
           </View>
@@ -176,78 +176,78 @@ export default QuickView;
 const styles = StyleSheet.create({
   parentContainer: {
     flex: 1,
-    justifyContent: "space-around",
-    margin: "8%",
-    marginBottom: "10%",
+    justifyContent: 'space-around',
+    margin: '8%',
+    marginBottom: '10%',
   },
   details: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
     width: 170,
-    marginTop: "1%",
+    marginTop: '1%',
   },
   dropDownContainer: {
-    flexDirection: "column",
-    justifyContent: "space-between",
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     height: 100,
-    marginTop: "-3%",
+    marginTop: '-3%',
   },
   dropDown: {
     width: 200,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   divider: {
     width: 150,
     height: 1,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   imageAndDetails: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: "-8%",
-    marginTop: "-13%",
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '-8%',
+    marginTop: '-13%',
   },
   modalDrop: {
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: "#f2f2f2",
+    borderColor: '#f2f2f2',
     padding: 10,
     borderRadius: 10,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   productName: {
     fontFamily: theme.fonts.secondary,
     color: theme.colors.textBlack,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     fontSize: 24,
-    marginBottom: "2.5%",
+    marginBottom: '2.5%',
   },
   productDetails: {
     fontFamily: theme.fonts.secondary,
     color: theme.colors.textBlack,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     fontSize: 18,
-    marginBottom: "8%",
+    marginBottom: '8%',
   },
   productDetails2: {
     fontFamily: theme.fonts.secondary,
     color: theme.colors.textBlack,
-    fontWeight: "normal",
+    fontWeight: 'normal',
     fontSize: 20,
-    marginBottom: "8%",
+    marginBottom: '8%',
   },
   cartButton: {
-    width: "38%",
+    width: '38%',
   },
   cartButtonParent: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
   },
   backButton: {
-    width: "20%",
-    marginTop: "-5%",
+    width: '20%',
+    marginTop: '-5%',
   },
   modalContent: {},
   modalText: {},

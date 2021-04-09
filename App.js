@@ -1,15 +1,15 @@
-import "react-native-gesture-handler";
-import React, { useState, useEffect, useCallback } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./frontend/navigation/TabNavigator";
+import 'react-native-gesture-handler';
+import React, { useState, useEffect, useCallback } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './frontend/navigation/TabNavigator';
 
-import Splash from "./frontend/screens/Splash";
+import Splash from './frontend/screens/Splash';
 import {
   Poppins_400Regular,
   Philosopher_400Regular,
-} from "./assets/fonts/google-fonts/dev";
-import { loadAsync } from "expo-font";
+} from './assets/fonts/google-fonts/dev';
+import { loadAsync } from 'expo-font';
 
 // https://reactnavigation.org/docs/tab-based-navigation
 export default function App() {
@@ -19,9 +19,10 @@ export default function App() {
     const prepare = async () => {
       try {
         await new Promise((resolve) => setTimeout(resolve, 1000)); // load in for 2 seconds
-        await loadAsync({ Poppins_400Regular, Philosopher_400Regular }).then(() =>
-          console.log("fonts loaded")
-        );
+        await loadAsync({
+          Poppins_400Regular,
+          Philosopher_400Regular,
+        }).then(() => console.log('fonts loaded'));
         //TODO: could fetch products from Wix API
       } catch (e) {
         console.warn(e);
