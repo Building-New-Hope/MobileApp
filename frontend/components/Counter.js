@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import Counter from "react-native-counters";
 
 function ItemCounter({ item, increment, decrement, updateTotal, total }) {
-  const [counter, setCounter] = useState(item.quantity);
+  const [counter, setCounter] = useState(item.quantity); 
+  // TODO: Bug with a previous item's quantity going to zero and then glitching the next items start count
 
   const handleCounter = (number, type) => {
     if (type === "-") {

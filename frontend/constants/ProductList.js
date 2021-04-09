@@ -1,16 +1,20 @@
-[
+const two = require('../../assets/images/2ozbag.jpg');
+const fivelb = require('../../assets/images/5lbbag.jpg');
+const twelve = require('../../assets/images/12ozbag.jpg');
+const sixteen = require('../../assets/images/16ozbag.jpg');
+const decaf = require('../../assets/images/decafbag.jpg')
+
+export default [
     {
         "name": "Dark Roast",
         "description": "savory",
-        "size": "",
         "price": 12.75,
         "grind": "WholeBean",
-        "image": ""
+        "image": require("../../assets/images/coffee.jpg")
     },
     {
         "name": "Expresso",
         "description": "For that extra punch",
-        "size": "",
         "price": 12.75,
         "grind": "WholeBean",  
         "image": ""
@@ -19,7 +23,6 @@
         
         "name": "Light Roast",
         "description": "Caramel and vanilla flavoring",
-        "size": "",
         "price": 12.75,
         "grind": "WholeBean",
         "image": ""
@@ -27,18 +30,23 @@
     {
         "name": "Medium Roast",
         "description": "A happy medium between light and dark",
-        "size": "",
         "price": 12.75,
         "grind": "WholeBean",
         "image": ""
     },
     {
         "name": "Decaf",
-        "description": "No caffiene ",
-        "size": "",
+        "description": "No caffeine ",
         "price": 12.75,
         "grind": "WholeBean",
-        "image": ""
-    }
+        "image": require('../../assets/images/decafbag.jpg')
+    },
+    {
+        "name": "Subscribe",
+        "description": "Link to coffe subscription on BNH website ",
+        "price": 12.75,
+        "grind": "WholeBean",
+        "image": require('../../assets/images/subscribe.png')
+    }	
 
 ]
