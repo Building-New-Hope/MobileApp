@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Text, Card } from "react-native-elements";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Modal, Pressable, Image } from "react-native";
 import { CheckOutButton } from "../components/Button";
 import Counter from "../components/Counter";
 import Divider from "react-native-btr/src/Components/Separator";
@@ -28,6 +28,48 @@ const EmptyCart = ({ navigation }) => {
         buttonStyle={styles.button}
         onPress={() => navigation.navigate("Catalog")}
       />
+    </View>
+  );
+};
+
+const Donation = ({ navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  return (
+    <View>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <Text style={styles.modalText}>Would you like to donate?</Text>
+            <View style={{ flexDirection: "row" }}>
+              <Pressable
+                style={[styles.modalButtons]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+              <Text style={styles.textStyle}>Donate</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.modalButtons]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+              <Text style={styles.textStyle}>Checkout</Text>
+            </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <Pressable
+        style={[styles.button]}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.textStyle}>Checkout</Text>
+      </Pressable>
     </View>
   );
 };
@@ -98,7 +140,7 @@ const Cart = ({ navigation, route }) => {
                 TOTAL ${total}
               </Text>
             </View>
-            <CheckOutButton onPress={getToken} />
+            <Donation navigation={navigation}/>
             {/* TODO: checkout flow event handler */}
           </View>
         </Card>
@@ -123,11 +165,43 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 40,
-    width: 150,
+    width: '100%',
     borderRadius: 8,
     paddingVertical: 10,
-    paddingHorizontal: 2,
+    alignItems: "center",
     backgroundColor: theme.colors.button,
+  },
+  modalButtons: {
+    height: 30, 
+    width: '40%',
+    borderRadius: 8,
+    paddingVertical: 3,
+    alignItems: "center",
+    backgroundColor: theme.colors.button,
+    color: '#FFFFFF',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    height: 500,
+    width: 300,
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    alignItems: "center",
   },
   card: {
     margin: "4.7%",
