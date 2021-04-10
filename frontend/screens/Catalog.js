@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, ScrollView, Button, Image } from 'react-native';
+import { StyleSheet, View, ScrollView, Button } from 'react-native';
 import { Card } from 'react-native-elements';
 
 import { CartButton } from '../components/Button';
@@ -99,7 +99,7 @@ const Catalog = ({ navigation }) => {
     await ShoppingCartStorage.clearProducts();
     setProducts([]);
   };
-
+  console.log('how many times rendering'); // rendering too many times, twice for each add to product, 3 times on entry.
   return (
     <>
       <ScrollView>
