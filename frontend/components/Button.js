@@ -1,9 +1,14 @@
-import React from "react";
-import { Button, Text } from "react-native-elements";
-import { StyleSheet, View, TouchableOpacity, ImageBackground } from "react-native";
+import React from 'react';
+import { Button, Text } from 'react-native-elements';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
+import { Icon } from 'react-native-elements';
 
-import { Icon } from "react-native-elements";
-
+import theme from '../constants/theme';
 /* 
 Component for the buttons in our app. We could have multiple kinds of buttons or just one
 Still need to style it further
@@ -16,70 +21,69 @@ const SolidButton = (props) => {
       <Button
         size={30}
         icon={props.icon}
-        buttonStyle={styles.button}
-        title={<Text style={styles.buttonText}> {props.text} </Text>}
+        buttonStyle={styles.solidButton}
+        title={props.text}
+        titleStyle={styles.buttonText}
         onPress={props.onPress}
-        //containerStyle={props.style}
       />
     </View>
   );
 };
 
 const CartButton = ({ onPress }) => {
-  return ( 
-		<TouchableOpacity
-			style={styles.cart}
-			onPress={onPress}
-		
-		> 
-			<ImageBackground
-				resizeMode="cover"
-				style={styles.image1}
-				source={require("../../assets/images/shopping-cart.png")}
-			></ImageBackground>
-		</TouchableOpacity>  
+  return (
+    <TouchableOpacity style={styles.cartButton} onPress={onPress}>
+      <ImageBackground
+        resizeMode="cover"
+        style={styles.image}
+        source={require('../../assets/images/shopping-cart.png')}
+      ></ImageBackground>
+    </TouchableOpacity>
   );
 };
-
 
 const CheckOutButton = (props) => {
   // TODO
   return (
     <Button
-      icon={<Icon name="ei-credit-card" type="evilicon" size={30} />}
+      icon={<Icon name="credit-card" type="evilicon" size={30} />}
       onPress={props.onPress}
-      color="green"
       title="Check Out"
+      titleStyle={styles.buttonText}
+      buttonStyle={styles.checkoutButton}
     />
   );
 };
 
 export { SolidButton, CartButton, CheckOutButton };
 
-
 const styles = StyleSheet.create({
-  button: {
+  solidButton: {
     height: 40,
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 2,
-    backgroundColor: "rgba(237,167,47,1)",
+    backgroundColor: theme.colors.button,
   },
-  
-  /*buttonText: {
-    color: "white",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-    fontSize: 16,
-    textAlign: "center",
-  },*/
-  
-	image1: {
-		flex: 1,
-	},
-  
-	cart: {
-		width: 40,
-		height: 40,
-	},
+  checkoutButton: {
+    height: 50,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 2,
+    backgroundColor: theme.colors.button,
+  },
+  cartButton: {
+    height: 40,
+    width: 40,
+  },
+  image: {
+    flex: 1,
+  },
+  buttonText: {
+    color: theme.colors.textBlack,
+    //fontWeight: "bold",
+    textTransform: 'uppercase',
+    fontSize: theme.fontSizes.body,
+    textAlign: 'center',
+  },
 });

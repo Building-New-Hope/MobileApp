@@ -1,5 +1,4 @@
-const braintree = require("braintree");
-
+const braintree = require('braintree');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -7,9 +6,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const config = {
   environment: braintree.Environment.Sandbox, // or braintree.Environment.Production
-  merchantId: process.env.MERCHANT_ID, 
+  merchantId: process.env.MERCHANT_ID,
   publicKey: process.env.PUBLIC_KEY,
-  privateKey: process.env.PRIVATE_KEY
-}
+  privateKey: process.env.PRIVATE_KEY,
+};
 
-module.exports = config
+module.exports = config;
