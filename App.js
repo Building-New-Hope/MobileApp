@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 import React, { useState, useEffect, } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigator from './frontend/navigation/TabNavigator';
+import { MainStackNavigator } from './frontend/navigation/StackNavigator';
 
 import Splash from './frontend/screens/Splash';
 import {
@@ -42,7 +42,7 @@ export default function App() {
     <>
       <SafeAreaProvider>
         <NavigationContainer>
-          <TabNavigator />
+          <MainStackNavigator />
         </NavigationContainer>
       </SafeAreaProvider>
     </>
