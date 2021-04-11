@@ -5,6 +5,7 @@
     "server": "cd server && npm run dev",
     "test": "echo \"not supported cuh\"",
     "android": "expo start --android",
+    "prettier": "prettier --write \"frontend/*/*.js\" && prettier --write \"server/*.js\"" ,
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject"

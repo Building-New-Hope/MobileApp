@@ -1,6 +1,6 @@
 import './frontend/utils/wdyr';
 import 'react-native-gesture-handler';
-import React, { useState, useEffect, } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { MainStackNavigator } from './frontend/navigation/StackNavigator';

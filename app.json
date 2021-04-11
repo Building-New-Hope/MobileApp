@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
-    
+
     "githubUrl": "https://github.com/Building-New-Hope/MobileApp",
     "updates": {
       "fallbackToCacheTimeout": 0

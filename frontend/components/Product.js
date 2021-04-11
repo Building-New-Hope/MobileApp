@@ -4,16 +4,15 @@ We will render a Product component for each object in the ProductsList.json mani
 import {
   StyleSheet,
   View,
-  Image,
   Button,
   ImageBackground,
   TouchableOpacity,
   Linking,
 } from 'react-native';
 
-import React, { useState, useEffect } from 'react';
-import { SolidButton } from './Button';
-import { ListItem, Text, Tooltip } from 'react-native-elements';
+import React, { useState } from 'react';
+//import { SolidButton } from './Button';
+import { ListItem, Text } from 'react-native-elements';
 import QuickView from './QuickView';
 
 //import ProductModel from "../utils/ProductModel";

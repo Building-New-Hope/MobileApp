@@ -59,7 +59,7 @@ const Cart = ({ navigation, route }) => {
                 {findGrindDesc(i.grind)}
               </Text>
               <Text style={styles.productDetailsText2}>
-                {i.size} oz     ${i.price}
+                {i.size} oz ${i.price}
               </Text>
             </View>
 
@@ -95,9 +95,9 @@ const Cart = ({ navigation, route }) => {
                 TOTAL ${total}
               </Text>
             </View>
-			<View style={styles.checkOutButton}>
-            <CheckOutButton onPress={getToken} />
-			</View>
+            <View style={styles.checkOutButton}>
+              <CheckOutButton onPress={getToken} />
+            </View>
             {/* TODO: checkout flow event handler */}
           </View>
         </Card>
@@ -161,9 +161,9 @@ const styles = StyleSheet.create({
     marginBottom: '3%',
   },
   checkOutButton: {
-	width: 170,
-	alignSelf: 'center',
-	marginBottom: '8%',
-	marginTop: '5%'	
+    width: 170,
+    alignSelf: 'center',
+    marginBottom: '8%',
+    marginTop: '5%',
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Image } from 'react-native-elements';
+import { Image } from 'react-native-elements';
 import { ActivityIndicator } from 'react-native';
 
 export default (props) => {
