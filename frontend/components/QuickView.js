@@ -83,89 +83,92 @@ function QuickView(props) {
         backdropTransitionOutTiming={300}
         animationIn="zoomInUp"
         animationOut="fadeOutDownBig"
-        onBackdropPress={props.setVisible}
+        //onBackdropPress={props.setVisible} I suggest to remove this because users should be able to press anywhere on the QuickView page without it collapsing.
         onSwipeComplete={props.setVisible}
+		//Let's keep the swiping function, though. It's really cool.
         swipeDirection="right"
       >
-        <View style={styles.backButton}>
-          <SolidButton onPress={props.setVisible} text="< BACK" />
-        </View>
+        <View style={styles.mainContainer}>
+			<View style={styles.backButton}>
+			  <SolidButton onPress={props.setVisible} text="< BACK" />
+			</View>
 
-        <View style={styles.imageAndDetails}>
-          <Text style={styles.productName}>{name}</Text>
-          <ProductImage url={imageUrl} />
-          <View style={styles.details}>
-            <Text style={styles.productDetails}>{size} oz</Text>
-            <Text style={styles.productDetails2}>${price}</Text>
-          </View>
-        </View>
+			<View style={styles.imageAndDetails}>
+			  <Text style={styles.productName}>{name}</Text>
+			  <ProductImage url={imageUrl} />
+			  <View style={styles.details}>
+				<Text style={styles.productDetails}>{size} oz</Text>
+				<Text style={styles.productDetails2}>${price}</Text>
+			  </View>
+			</View>
 
-        <View style={styles.dropDownContainer}>
-          <View style={styles.dropDown}>
-            <DropDownPicker
-              items={grinds}
-              defaultValue={grind}
-              containerStyle={{ height: 40 }}
-              style={{ backgroundColor: '#fafafa' }}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              labelStyle={{
-                fontSize: 14,
-                textAlign: 'left',
-                color: '#39739d',
-              }}
-              selectedLabelStyle={{
-                fontWeight: 'bold',
-                color: '#39739d',
-              }}
-              onChangeItem={(item) => setGrind(item.value)} //
-              isVisible={isDDVisible.grindVisible}
-              onOpen={() => changeVisibility({ grindVisible: true })}
-              onClose={() => changeVisibility({ grindVisible: true })}
-            />
-          </View>
+			<View style={styles.dropDownContainer}>
+			  <View style={styles.dropDown}>
+				<DropDownPicker
+				  items={grinds}
+				  defaultValue={grind}
+				  containerStyle={{ height: 40 }}
+				  style={{ backgroundColor: '#fafafa' }}
+				  itemStyle={{
+					justifyContent: 'flex-start',
+				  }}
+				  labelStyle={{
+					fontSize: 14,
+					textAlign: 'left',
+					color: '#39739d',
+				  }}
+				  selectedLabelStyle={{
+					fontWeight: 'bold',
+					color: '#39739d',
+				  }}
+				  onChangeItem={(item) => setGrind(item.value)} //
+				  isVisible={isDDVisible.grindVisible}
+				  onOpen={() => changeVisibility({ grindVisible: true })}
+				  onClose={() => changeVisibility({ grindVisible: true })}
+				/>
+			  </View>
 
-          <Divider style={styles.divider} />
+			  <Divider style={styles.divider} />
 
-          <View style={styles.dropDown}>
-            <DropDownPicker
-              style={{ paddingVertical: 10 }}
-              containerStyle={{ width: 150, height: 70 }}
-              labelStyle={{
-                fontSize: 14,
-                textAlign: 'left',
-                color: '#39739d',
-              }}
-              selectedLabelStyle={{
-                fontWeight: 'bold',
-                color: '#39739d',
-              }}
-              items={sizes}
-              defaultValue={size}
-              containerStyle={{ height: 40 }}
-              style={{ backgroundColor: '#fafafa' }}
-              itemStyle={{
-                justifyContent: 'flex-start',
-              }}
-              onChangeItem={(item) => {
-                setSize(item.value);
-              }}
-              isVisible={isDDVisible.sizeVisible}
-              onOpen={() => changeVisibility({ sizeVisible: true })}
-              onClose={() => changeVisibility({ sizeVisible: false })}
-            />
-          </View>
-        </View>
+			  <View style={styles.dropDown}>
+				<DropDownPicker
+				  style={{ paddingVertical: 10 }}
+				  containerStyle={{ width: 150, height: 70 }}
+				  labelStyle={{
+					fontSize: 14,
+					textAlign: 'left',
+					color: '#39739d',
+				  }}
+				  selectedLabelStyle={{
+					fontWeight: 'bold',
+					color: '#39739d',
+				  }}
+				  items={sizes}
+				  defaultValue={size}
+				  containerStyle={{ height: 40 }}
+				  style={{ backgroundColor: '#fafafa' }}
+				  itemStyle={{
+					justifyContent: 'flex-start',
+				  }}
+				  onChangeItem={(item) => {
+					setSize(item.value);
+				  }}
+				  isVisible={isDDVisible.sizeVisible}
+				  onOpen={() => changeVisibility({ sizeVisible: true })}
+				  onClose={() => changeVisibility({ sizeVisible: false })}
+				/>
+			  </View>
+			</View>
 
-        <View style={styles.cartButtonParent}>
-          <View style={styles.cartButton}>
-            <SolidButton
-              text={isAdded ? 'ADDED' : 'ADD TO CART'}
-              onPress={addToCart}
-            />
-          </View>
-        </View>
+			<View style={styles.cartButtonParent}>
+			  <View style={styles.cartButton}>
+				<SolidButton
+				  text={isAdded ? 'ADDED' : 'ADD TO CART'}
+				  onPress={addToCart}
+				/>
+			  </View>
+			</View>
+		</View>	
       </Modal>
     </View>
   );
@@ -174,12 +177,16 @@ function QuickView(props) {
 export default QuickView;
 
 const styles = StyleSheet.create({
-  parentContainer: {
-    flex: 1,
-    justifyContent: 'space-around',
-    margin: '8%',
-    marginBottom: '10%',
-  },
+	parentContainer: {
+		flex: 1,
+		justifyContent: "center",
+	},
+	mainContainer: {
+		height: 500,
+		justifyContent: "space-around",
+		margin:'8%',
+		marginBottom:'10%',
+	},
   details: {
     flexDirection: 'row',
     justifyContent: 'space-between',

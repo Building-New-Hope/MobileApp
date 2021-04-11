@@ -83,7 +83,7 @@ const Product = (props) => {
                   )
               : toggleModal
           }
-          title={name == 'Subscribe' ? 'Go' : 'See more'}
+          title={name == 'Subscribe' ? 'GO' : 'SEE MORE'}
           color="rgba(237,167,47,1)"
         />
       </View>
