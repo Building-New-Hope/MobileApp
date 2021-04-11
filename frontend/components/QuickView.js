@@ -16,7 +16,6 @@ const sizes = coffee.sizes;
 import theme from '../constants/theme';
 
 /* 
-
  A quick view for each product when clicked on
  We use the react native modal package, examples here
  https://github.com/react-native-modal/react-native-modal/tree/master/example/src
@@ -103,7 +102,8 @@ function QuickView(props) {
             </View>
           </View>
 
-          <View style={styles.dropDownContainer}>
+          <View style={styles.dropAndButton}>
+		  <View style={styles.dropDownContainer}>
             <View style={styles.dropDown}>
               <DropDownPicker
                 items={grinds}
@@ -160,7 +160,6 @@ function QuickView(props) {
               />
             </View>
           </View>
-
           <View style={styles.cartButtonParent}>
             <View style={styles.cartButton}>
               <SolidButton
@@ -169,6 +168,9 @@ function QuickView(props) {
               />
             </View>
           </View>
+		  </View>
+
+
         </View>
       </Modal>
     </View>
@@ -195,11 +197,16 @@ const styles = StyleSheet.create({
     width: 170,
     marginTop: '1%',
   },
+  dropAndButton: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: 170,
+    marginTop: '-7%',
+  },  
   dropDownContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: 100,
-    marginTop: '-3%',
   },
   dropDown: {
     width: 200,
