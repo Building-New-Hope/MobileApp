@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import { Text, Card } from "react-native-elements";
 import { View, StyleSheet, ScrollView, Modal, Pressable, Image } from "react-native";
@@ -7,11 +7,10 @@ import Counter from "../components/Counter";
 import Divider from "react-native-btr/src/Components/Separator";
 import { SolidButton } from "../components/Button";
 
-import findGrindDesc from "../utils/findGrindDesc";
-import ShoppingCartStorage from "../utils/ShoppingCartStorage";
-import { getToken } from "../services/payments";
+import findGrindDesc from '../utils/findGrindDesc';
+import { getToken } from '../services/payments';
 
-import theme from "../constants/theme";
+import theme from '../constants/theme';
 
 /* 
 This is a seperate screen for the cart to be displayed. If not React Navigation parameters were passed we will
@@ -26,7 +25,7 @@ const EmptyCart = ({ navigation }) => {
       <SolidButton
         text="Continue Shopping"
         buttonStyle={styles.button}
-        onPress={() => navigation.navigate("Catalog")}
+        onPress={() => navigation.navigate('Catalog')}
       />
     </View>
   );
@@ -81,14 +80,14 @@ const Donation = ({ navigation }) => {
 
 const Cart = ({ navigation, route }) => {
   const [items, setItems] = useState([]);
-  const [total, updateTotal] = useState(route.params.total);
+  const [total, updateTotal] = useState(route.params ? route.params.total : 0);
 
   useEffect(() => {
     const fetchData = async () => {
       let { products } = route.params;
       setItems(products);
     };
-    console.log("Route parameters: ", route.params);
+    console.log('Route parameters: ', route.params);
     if (route.params)
       // passed params w/ react navigation. Currently the only was to navigate to cart is through Catalog so params will always be passed
       // In the future there should be support for w/o params using localstorage or other context options
@@ -98,15 +97,11 @@ const Cart = ({ navigation, route }) => {
   let cartItems = items
     .filter((i) => i.quantity != 0)
     .map((i) => {
-      // filter so that it disappears -
-      // bugs with the Counter - resets the remaining products counter to 0 only if it was added after the one removedmap((i) => {
       return (
         <View key={i.id} style={styles.productContainerParent}>
           <View style={styles.productContainer}>
             <View style={styles.productDetails}>
-              <Text style={styles.productDetailsText} >
-                {i.name}
-              </Text>
+              <Text style={styles.productDetailsText}>{i.name}</Text>
               <Text style={styles.productDetailsText2}>
                 {findGrindDesc(i.grind)}
               </Text>
@@ -117,7 +112,9 @@ const Cart = ({ navigation, route }) => {
 
             <View style={styles.productQuantity}>
               <Counter // each item will have its seperate Counter for adding more / subtracting
-                item={i}
+                id={i.id}
+                price={i.price}
+                quantity={i.quantity}
                 increment={route.params.increment}
                 decrement={route.params.decrement}
                 updateTotal={updateTotal}
@@ -130,7 +127,7 @@ const Cart = ({ navigation, route }) => {
       );
     });
 
-  if (!items || items.length == 0) {
+  if (!items || cartItems.length == 0) {
     return <EmptyCart navigation={navigation} />;
   } else {
     return (
@@ -141,11 +138,17 @@ const Cart = ({ navigation, route }) => {
               <Card.Title>MY CART</Card.Title>
               {cartItems}
               <Divider />
-              <Text style={{ fontWeight: "bold", marginTop: "5%" }}>
+              <Text style={{ fontWeight: 'bold', marginTop: '5%' }}>
                 TOTAL ${total}
               </Text>
             </View>
+
             <Donation navigation={navigation}/>
+
+            <View style={styles.checkOutButton}>
+              <CheckOutButton onPress={getToken} />
+            </View>
+
             {/* TODO: checkout flow event handler */}
           </View>
         </Card>
@@ -161,8 +164,8 @@ export default Cart;
 const styles = StyleSheet.create({
   nothingHere: {
     flex: 0.4,
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   title: {
     fontFamily: theme.fonts.secondary,
@@ -221,35 +224,41 @@ const styles = StyleSheet.create({
     height: 25,
   },
   card: {
-    margin: "4.7%",
+    margin: '4.7%',
   },
   cardColor: {
-    backgroundColor: "#e8dbc3",
-    margin: "-4.7%",
+    backgroundColor: '#e8dbc3',
+    margin: '-4.7%',
   },
   productContainerParent: {
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   productContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: "4%",
-    marginTop: "3%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: '4%',
+    marginTop: '3%',
   },
   productDetails: {
     height: 75,
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
   },
   productQuantity: {
     height: 75,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
   productDetailsText: {
     fontSize: 19.5,
     fontFamily: theme.fonts.secondary,
   },
   productDetailsText2: {
-    marginBottom: "3%",
+    marginBottom: '3%',
+  },
+  checkOutButton: {
+    width: 170,
+    alignSelf: 'center',
+    marginBottom: '8%',
+    marginTop: '5%',
   },
 });

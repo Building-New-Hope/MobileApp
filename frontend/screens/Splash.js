@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import React from 'react';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 
 export default function Splash() {
   return (
@@ -7,7 +7,7 @@ export default function Splash() {
       <View style={styles.containerParent}>
         <View style={styles.container}>
           <ImageBackground
-            source={require("../../assets/images/colorlogo.png")}
+            source={require('../../assets/images/colorlogo.png')}
             style={styles.logo}
             //imageStyle={{ resizeMode: "stretch" }}
           ></ImageBackground>
@@ -19,15 +19,15 @@ export default function Splash() {
 const styles = StyleSheet.create({
   containerParent: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
 
   container: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
 
   logo: {

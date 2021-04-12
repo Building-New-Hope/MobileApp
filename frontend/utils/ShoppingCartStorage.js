@@ -1,11 +1,11 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /*
 Abstraction for the the asynclocalStorage API
 */
 
 class ShoppingCartStorage {
-  constructor(namespace = "shoppingCart") {
+  constructor(namespace = 'shoppingCart') {
     this.namespace = namespace; // prefix we throw in front of the keys
   }
 
@@ -54,9 +54,9 @@ class ShoppingCartStorage {
     );
   }
 
-  static async incrementProduct(product) {
+  static async incrementProduct(id) {
     const currentProducts = await this.getProducts();
-    let index = currentProducts.findIndex((i) => i.id === product.id);
+    let index = currentProducts.findIndex((i) => i.id === id);
     let newProducts = [...currentProducts];
     newProducts[index].quantity++;
     // console.log("after increment: ", newProducts);
@@ -67,9 +67,9 @@ class ShoppingCartStorage {
     );
   }
 
-  static async decrementProduct(product) {
+  static async decrementProduct(id) {
     const currentProducts = await this.getProducts();
-    let index = currentProducts.findIndex((i) => i.id === product.id);
+    let index = currentProducts.findIndex((i) => i.id === id);
     let newProducts = [...currentProducts];
     newProducts[index].quantity--;
     //console.log("after decrement: ", newProducts);

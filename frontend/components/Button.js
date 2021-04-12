@@ -1,14 +1,14 @@
-import React from "react";
-import { Button, Text } from "react-native-elements";
+import React from 'react';
+import { Button } from 'react-native-elements';
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   ImageBackground,
-} from "react-native";
-import { Icon } from "react-native-elements";
+} from 'react-native';
+import { Icon } from 'react-native-elements';
 
-import theme from "../constants/theme";
+import theme from '../constants/theme';
 /* 
 Component for the buttons in our app. We could have multiple kinds of buttons or just one
 Still need to style it further
@@ -36,7 +36,7 @@ const CartButton = ({ onPress }) => {
       <ImageBackground
         resizeMode="cover"
         style={styles.image}
-        source={require("../../assets/images/shopping-cart.png")}
+        source={require('../../assets/images/shopping-cart.png')}
       ></ImageBackground>
     </TouchableOpacity>
   );
@@ -48,7 +48,7 @@ const CheckOutButton = (props) => {
     <Button
       icon={<Icon name="credit-card" type="evilicon" size={30} />}
       onPress={props.onPress}
-      title='Check Out'
+      title="Check Out"
       titleStyle={styles.buttonText}
       buttonStyle={styles.checkoutButton}
     />
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: theme.colors.textBlack,
     //fontWeight: "bold",
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
     fontSize: theme.fontSizes.body,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });

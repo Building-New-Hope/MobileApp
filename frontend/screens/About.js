@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { StyleSheet } from 'react-native';
+import { Text } from 'react-native-elements';
 
 export default function About() {
   return (

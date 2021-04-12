@@ -1,7 +1,7 @@
-import { Text } from "react-native-elements";
-import * as Linking from "expo-linking";
+import { Text } from 'react-native-elements';
+import * as Linking from 'expo-linking';
 
-import React from "react";
+import React from 'react';
 
 /* 
 Component for when we want to link to something outside our app
