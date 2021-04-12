@@ -46,19 +46,24 @@ const Donation = ({ navigation }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-          <Text style={styles.modalText}>Would you like to donate?</Text>
+          <Text style={styles.modalText}>Would you like to donate</Text>
+          <Text style={styles.modalText}>Hurricane IOTA ETA relief effort?</Text>
+            <Image style={styles.modalImg} source={require("../../assets/images/logo.jpg")}
+              resizeMode="contain"
+            ></Image>
             <View style={{ flexDirection: "row" }}>
               <Pressable
                 style={[styles.modalButtons]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-              <Text style={styles.textStyle}>Donate</Text>
+              <Text style={styles.textStyle}>DONATE</Text>
               </Pressable>
+              <View style={styles.space}></View>
               <Pressable
                 style={[styles.modalButtons]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-              <Text style={styles.textStyle}>Checkout</Text>
+              <Text style={styles.textStyle}>CHECKOUT</Text>
             </Pressable>
             </View>
           </View>
@@ -68,7 +73,7 @@ const Donation = ({ navigation }) => {
         style={[styles.button]}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.textStyle}>Checkout</Text>
+        <Text style={styles.textStyle}>CHECKOUT</Text>
       </Pressable>
     </View>
   );
@@ -173,7 +178,7 @@ const styles = StyleSheet.create({
   },
   modalButtons: {
     height: 30, 
-    width: '40%',
+    width: '50%',
     borderRadius: 8,
     paddingVertical: 3,
     alignItems: "center",
@@ -187,11 +192,11 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    height: 500,
+    height: 400,
     width: 300,
     margin: 20,
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 35,
     shadowColor: "#000",
     shadowOffset: {
@@ -202,6 +207,18 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     alignItems: "center",
+    justifyContent: 'space-around',
+    fontWeight: "bold",
+  },
+  modalImg: {
+    flex: 1,
+    height: '30%',
+    aspectRatio: 0.7,
+    resizeMode: 'contain',
+  },
+  space: {
+    width: 25,
+    height: 25,
   },
   card: {
     margin: "4.7%",
