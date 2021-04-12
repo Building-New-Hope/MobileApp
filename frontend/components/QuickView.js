@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, Divider } from 'react-native-elements';
 import { View, StyleSheet } from 'react-native';
+import HidibleView from './HidibleView';
 import Modal from 'react-native-modal'; // could also use Overlay from R-N-E
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -33,6 +34,7 @@ function QuickView(props) {
   const [imageUrl, setImageUrl] = useState(props.image);
 
   const [isDDVisible, setDDVisible] = useState({
+    // DD - DropDown
     sizeVisible: false,
     grindVisible: false,
   });
@@ -44,6 +46,7 @@ function QuickView(props) {
       ...state,
     });
   };
+
 
   useEffect(() => {
     let temp = price;
@@ -73,92 +76,85 @@ function QuickView(props) {
 
   return (
     //https://www.npmjs.com/package/react-native-dropdown-picker#available-item-properties
-    <View>
-      <Modal
-        style={styles.parentContainer}
-        isVisible={props.isVisible}
-        backdropColor="#e8dbc3"
-        backdropOpacity={0.95}
-        backdropTransitionInTiming={300}
-        backdropTransitionOutTiming={300}
-        animationIn="zoomInUp"
-        animationOut="fadeOutDownBig"
-        //onBackdropPress={props.setVisible} I suggest to remove this because users should be able to press anywhere on the QuickView page without it collapsing.
-        onSwipeComplete={props.setVisible}
-        //Let's keep the swiping function, though. It's really cool.
-        swipeDirection="right"
-      >
-        <View style={styles.mainContainer}>
-          <View style={styles.backButton}>
-            <SolidButton onPress={props.setVisible} text="< BACK" />
+    <Modal
+      style={styles.parentContainer}
+      isVisible={props.isVisible}
+      backdropColor="#e8dbc3"
+      backdropOpacity={0.95}
+      backdropTransitionInTiming={300}
+      backdropTransitionOutTiming={300}
+      animationIn="zoomInUp"
+      animationOut="fadeOutDownBig"
+      //onBackdropPress={props.setVisible} I suggest to remove this because users should be able to press anywhere on the QuickView page without it collapsing.
+      onSwipeComplete={props.setVisible}
+      //Let's keep the swiping function, though. It's really cool.
+      swipeDirection="right"
+    >
+      <View style={styles.mainContainer}>
+        <View style={styles.backButton}>
+          <SolidButton onPress={props.setVisible} text="< BACK" />
+        </View>
+
+        <View style={styles.imageAndDetails}>
+          <Text style={styles.productName}>{name}</Text>
+          <ProductImage url={imageUrl} />
+          <View style={styles.details}>
+            <Text style={styles.productDetails}>{size} oz</Text>
+            <Text style={styles.productDetails2}>${price}</Text>
           </View>
+        </View>
 
-          <View style={styles.imageAndDetails}>
-            <Text style={styles.productName}>{name}</Text>
-            <ProductImage url={imageUrl} />
-            <View style={styles.details}>
-              <Text style={styles.productDetails}>{size} oz</Text>
-              <Text style={styles.productDetails2}>${price}</Text>
-            </View>
-          </View>
-
-          <View style={styles.dropAndButton}>
-		  <View style={styles.dropDownContainer}>
-            <View style={styles.dropDown}>
-              <DropDownPicker
-                items={grinds}
-                defaultValue={grind}
-                containerStyle={{ height: 40 }}
-                style={{ backgroundColor: '#fafafa' }}
-                itemStyle={{
-                  justifyContent: 'flex-start',
-                }}
-                labelStyle={{
-                  fontSize: 14,
-                  textAlign: 'left',
-                  color: '#39739d',
-                }}
-                selectedLabelStyle={{
-                  fontWeight: 'bold',
-                  color: '#39739d',
-                }}
-                onChangeItem={(item) => setGrind(item.value)} //
-                isVisible={isDDVisible.grindVisible}
-                onOpen={() => changeVisibility({ grindVisible: true })}
-                onClose={() => changeVisibility({ grindVisible: true })}
-              />
-            </View>
-
+        <View style={styles.dropAndButton}>
+          <View style={styles.dropDownContainer}>
+            <DropDownPicker
+              items={grinds}
+              defaultValue={grind}
+              containerStyle={{ height: 40 }}
+              style={styles.dropDown}
+              itemStyle={{
+                justifyContent: 'flex-start',
+              }}
+              labelStyle={{
+                fontSize: 14,
+                textAlign: 'left',
+                color: '#39739d',
+              }}
+              selectedLabelStyle={{
+                fontWeight: 'bold',
+                color: '#39739d',
+              }}
+              onChangeItem={(item) => setGrind(item.value)} //
+              isVisible={isDDVisible.grindVisible}
+              onOpen={() => changeVisibility({ grindVisible: true })}
+              onClose={() => changeVisibility({ grindVisible: true })}
+            />
             <Divider style={styles.divider} />
-
-            <View style={styles.dropDown}>
-              <DropDownPicker
-                style={{ paddingVertical: 10 }}
-                containerStyle={{ width: 150, height: 70 }}
-                labelStyle={{
-                  fontSize: 14,
-                  textAlign: 'left',
-                  color: '#39739d',
-                }}
-                selectedLabelStyle={{
-                  fontWeight: 'bold',
-                  color: '#39739d',
-                }}
-                items={sizes}
-                defaultValue={size}
-                containerStyle={{ height: 40 }}
-                style={{ backgroundColor: '#fafafa' }}
-                itemStyle={{
-                  justifyContent: 'flex-start',
-                }}
-                onChangeItem={(item) => {
-                  setSize(item.value);
-                }}
-                isVisible={isDDVisible.sizeVisible}
-                onOpen={() => changeVisibility({ sizeVisible: true })}
-                onClose={() => changeVisibility({ sizeVisible: false })}
-              />
-            </View>
+            <DropDownPicker
+              style={{ paddingVertical: 10 }}
+              containerStyle={{ width: 150, height: 70 }}
+              labelStyle={{
+                fontSize: 14,
+                textAlign: 'left',
+                color: '#39739d',
+              }}
+              selectedLabelStyle={{
+                fontWeight: 'bold',
+                color: '#39739d',
+              }}
+              items={sizes}
+              defaultValue={size}
+              containerStyle={{ height: 40 }}
+              style={styles.dropDown}
+              itemStyle={{
+                justifyContent: 'flex-start',
+              }}
+              onChangeItem={(item) => {
+                setSize(item.value);
+              }}
+              isVisible={isDDVisible.sizeVisible}
+              onOpen={() => changeVisibility({ sizeVisible: true })}
+              onClose={() => changeVisibility({ sizeVisible: false })}
+            />
           </View>
           <View style={styles.cartButtonParent}>
             <View style={styles.cartButton}>
@@ -168,12 +164,9 @@ function QuickView(props) {
               />
             </View>
           </View>
-		  </View>
-
-
         </View>
-      </Modal>
-    </View>
+      </View>
+    </Modal>
   );
 }
 
@@ -202,7 +195,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: 170,
     marginTop: '-7%',
-  },  
+  },
   dropDownContainer: {
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -211,6 +204,7 @@ const styles = StyleSheet.create({
   dropDown: {
     width: 200,
     alignSelf: 'center',
+    backgroundColor: '#fafafa',
   },
   divider: {
     width: 150,
