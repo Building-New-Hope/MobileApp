@@ -1,15 +1,12 @@
 {
   "expo": {
-    "name": "BuildingNewHope",
-    "slug": "BuildingNewHope",
+    "name": "Building New Hope",
+    "slug": "Building-New-Hope",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
-    "splash": {
-      "image": "./assets/images/colorlogo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+
+    "githubUrl": "https://github.com/Building-New-Hope/MobileApp",
     "updates": {
       "fallbackToCacheTimeout": 0
     },

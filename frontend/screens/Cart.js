@@ -95,7 +95,9 @@ const Cart = ({ navigation, route }) => {
                 TOTAL ${total}
               </Text>
             </View>
-            <CheckOutButton onPress={getToken} />
+            <View style={styles.checkOutButton}>
+              <CheckOutButton onPress={getToken} />
+            </View>
             {/* TODO: checkout flow event handler */}
           </View>
         </Card>
@@ -157,5 +159,11 @@ const styles = StyleSheet.create({
   },
   productDetailsText2: {
     marginBottom: '3%',
+  },
+  checkOutButton: {
+    width: 170,
+    alignSelf: 'center',
+    marginBottom: '8%',
+    marginTop: '5%',
   },
 });
