@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-import { Text, Card } from "react-native-elements";
-import { View, StyleSheet, ScrollView, Modal, Pressable, Image } from "react-native";
-import { CheckOutButton } from "../components/Button";
-import Counter from "../components/Counter";
-import Divider from "react-native-btr/src/Components/Separator";
-import { SolidButton } from "../components/Button";
+import { Text, Card } from 'react-native-elements';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import { CheckOutButton } from '../components/Button';
+import Counter from '../components/Counter';
+import Divider from 'react-native-btr/src/Components/Separator';
+//import Donation from '../components/Donation';
+import { SolidButton } from '../components/Button';
 
 import findGrindDesc from '../utils/findGrindDesc';
 import { getToken } from '../services/payments';
 
 import theme from '../constants/theme';
+
 
 /* 
 This is a seperate screen for the cart to be displayed. If not React Navigation parameters were passed we will
@@ -27,53 +33,6 @@ const EmptyCart = ({ navigation }) => {
         buttonStyle={styles.button}
         onPress={() => navigation.navigate('Catalog')}
       />
-    </View>
-  );
-};
-
-const Donation = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  return (
-    <View>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <Text style={styles.modalText}>Would you like to donate</Text>
-          <Text style={styles.modalText}>Hurricane IOTA ETA relief effort?</Text>
-            <Image style={styles.modalImg} source={require("../../assets/images/logo.jpg")}
-              resizeMode="contain"
-            ></Image>
-            <View style={{ flexDirection: "row" }}>
-              <Pressable
-                style={[styles.modalButtons]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-              <Text style={styles.textStyle}>DONATE</Text>
-              </Pressable>
-              <View style={styles.space}></View>
-              <Pressable
-                style={[styles.modalButtons]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-              <Text style={styles.textStyle}>CHECKOUT</Text>
-            </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>CHECKOUT</Text>
-      </Pressable>
     </View>
   );
 };
@@ -143,7 +102,7 @@ const Cart = ({ navigation, route }) => {
               </Text>
             </View>
 
-            <Donation navigation={navigation}/>
+            {/*   <Donation navigation={navigation}/> */}
 
             <View style={styles.checkOutButton}>
               <CheckOutButton onPress={getToken} />
@@ -176,42 +135,42 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 8,
     paddingVertical: 10,
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: theme.colors.button,
   },
   modalButtons: {
-    height: 30, 
+    height: 30,
     width: '50%',
     borderRadius: 8,
     paddingVertical: 3,
-    alignItems: "center",
+    alignItems: 'center',
     backgroundColor: theme.colors.button,
     color: '#FFFFFF',
   },
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 22,
   },
   modalView: {
     height: 400,
     width: 300,
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: 5,
     padding: 35,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    alignItems: "center",
+    alignItems: 'center',
     justifyContent: 'space-around',
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   modalImg: {
     flex: 1,
