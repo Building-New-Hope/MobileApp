@@ -31,53 +31,6 @@ const EmptyCart = ({ navigation }) => {
   );
 };
 
-const Donation = ({ navigation }) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  return (
-    <View>
-      <Modal
-        animationType="fade"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <Text style={styles.modalText}>Would you like to donate</Text>
-          <Text style={styles.modalText}>Hurricane IOTA ETA relief effort?</Text>
-            <Image style={styles.modalImg} source={require("../../assets/images/logo.jpg")}
-              resizeMode="contain"
-            ></Image>
-            <View style={{ flexDirection: "row" }}>
-              <Pressable
-                style={[styles.modalButtons]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-              <Text style={styles.textStyle}>DONATE</Text>
-              </Pressable>
-              <View style={styles.space}></View>
-              <Pressable
-                style={[styles.modalButtons]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-              <Text style={styles.textStyle}>CHECKOUT</Text>
-            </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <Pressable
-        style={[styles.button]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>CHECKOUT</Text>
-      </Pressable>
-    </View>
-  );
-};
-
 const Cart = ({ navigation, route }) => {
   const [items, setItems] = useState([]);
   const [total, updateTotal] = useState(route.params ? route.params.total : 0);
@@ -143,10 +96,8 @@ const Cart = ({ navigation, route }) => {
               </Text>
             </View>
 
-            <Donation navigation={navigation}/>
-
             <View style={styles.checkOutButton}>
-              <CheckOutButton onPress={getToken} />
+              <CheckOutButton onPress={() => navigation.navigate('Donation')}/>
             </View>
 
             {/* TODO: checkout flow event handler */}

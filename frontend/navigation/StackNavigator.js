@@ -6,6 +6,7 @@ import Home from '../screens/Home';
 import Catalog from '../screens/Catalog';
 import About from '../screens/About';
 import Cart from '../screens/Cart';
+import Donation from '../screens/Donation';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,8 @@ const MainStackNavigator = () => {
       <Stack.Screen name="About Us" component={About} />
       <Stack.Screen name="Catalog" component={Catalog} />
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Donation" component={Donation} />
+      
     </Stack.Navigator>
   );
 };
