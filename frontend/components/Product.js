@@ -1,3 +1,4 @@
+//Credits: Tiles design based on "Vanilla App" free-to-use template's tiles design on https://builderx.io/app/8czovon9j5s0kkg04swc8s08040gs0
 /*
 We will render a Product component for each object in the ProductsList.json manifest. 
 */
